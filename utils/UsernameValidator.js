@@ -1,5 +1,5 @@
 const UsernameValidator = (username, minLength, maxLength) => {
-  if (username === "") {
+  if (username === "" || username === undefined) {
     return "Username is required";
   } else if (username.length < minLength) {
     return "Username is too short";

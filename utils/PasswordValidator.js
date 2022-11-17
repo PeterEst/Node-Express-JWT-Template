@@ -1,5 +1,5 @@
 const PasswordValidator = (password, minLength) => {
-  if (!password) {
+  if (!password || password === "" || password === undefined) {
     return "Password is required";
   } else if (password.length < minLength) {
     return "Password must be at least 6 characters";

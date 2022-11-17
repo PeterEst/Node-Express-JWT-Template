@@ -9,13 +9,16 @@ export const checkToken = (req, res, next) => {
         res.json({ errors: err, success: false });
       } else {
         const user = await UserModel.findById(decodedToken.id);
-        if (user) res.json({ user: user._id, success: true });
-        else res.json({ errors: "User not found", success: false });
+        if (user) res.json({ user: user, success: true });
+        else
+          res
+            .status(401)
+            .json({ errors: "User Authorization Expired", success: false });
         next();
       }
     });
   } else {
-    res.json({ errors: "No token", success: false });
+    res.status(401).json({ errors: "Unauthorized", success: false });
     next();
   }
 };
